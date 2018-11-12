@@ -1,0 +1,118 @@
+-- Create table
+create table GS_HONOUR_ACHIEVE
+(
+  ID                 VARCHAR2(50) not null,
+  ACHIEVE_TYPE       VARCHAR2(2),
+  ACHIEVE_TIME       VARCHAR2(10),
+  PRIZE_TYPE         VARCHAR2(10),
+  SALESMEN_NO        VARCHAR2(10),
+  SALESMEN_NAME      VARCHAR2(100),
+  TWO_ORG_CNAME      VARCHAR2(100),
+  THREE_ORG_CNAME    VARCHAR2(100),
+  BUSINESS_DEP_CNAME VARCHAR2(100),
+  MANAGER_TYPE       VARCHAR2(3),
+  TEAM_TYPE          VARCHAR2(3),
+  RANKED             NUMBER,
+  ACHIEVE_NUM        NUMBER(16,2),
+  CREATED_DATE       DATE,
+  UPDATED_DATE       DATE,
+  CREATED_BY         VARCHAR2(10),
+  UPDATED_BY         VARCHAR2(10)
+)
+tablespace TBS_CBSIS
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64
+    next 1
+    minextents 1
+    maxextents unlimited
+  );
+-- Add comments to the table 
+comment on table GS_HONOUR_ACHIEVE
+  is '移动销售业绩信息表';
+-- Add comments to the columns 
+comment on column GS_HONOUR_ACHIEVE.ID
+  is 'ID UUID';
+comment on column GS_HONOUR_ACHIEVE.ACHIEVE_TYPE
+  is '业绩类型1-月2-季3-年
+';
+comment on column GS_HONOUR_ACHIEVE.ACHIEVE_TIME
+  is '业绩时间,当为月度时：2018-08
+当为季度时：2018-3
+当为年度时：2018
+';
+comment on column GS_HONOUR_ACHIEVE.PRIZE_TYPE
+  is '获奖类型；
+';
+comment on column GS_HONOUR_ACHIEVE.SALESMEN_NO
+  is '工号';
+comment on column GS_HONOUR_ACHIEVE.SALESMEN_NAME
+  is '姓名';
+comment on column GS_HONOUR_ACHIEVE.TWO_ORG_CNAME
+  is '分公司名称';
+comment on column GS_HONOUR_ACHIEVE.THREE_ORG_CNAME
+  is '三级机构名称';
+comment on column GS_HONOUR_ACHIEVE.BUSINESS_DEP_CNAME
+  is '营业团队';
+comment on column GS_HONOUR_ACHIEVE.MANAGER_TYPE
+  is '人员类型 A-综合金融
+B-专业团队';
+comment on column GS_HONOUR_ACHIEVE.TEAM_TYPE
+  is '人员属性 AA-主管
+AB-渠道经理
+AC-营销主任';
+comment on column GS_HONOUR_ACHIEVE.RANKED
+  is '排名';
+comment on column GS_HONOUR_ACHIEVE.ACHIEVE_NUM
+  is '业绩保费/增员人数';
+comment on column GS_HONOUR_ACHIEVE.CREATED_DATE
+  is '创建时间';
+comment on column GS_HONOUR_ACHIEVE.UPDATED_DATE
+  is '修改时间';
+comment on column GS_HONOUR_ACHIEVE.CREATED_BY
+  is '创建人';
+comment on column GS_HONOUR_ACHIEVE.UPDATED_BY
+  is '修改人';
+-- Create/Recreate primary, unique and foreign key constraints 
+alter table GS_HONOUR_ACHIEVE
+  add constraint GS_HOUR_ACHIEVE_PRIMARY_KEY primary key (ID)
+  using index 
+  tablespace TBS_CBSIS
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+-- Create/Recreate indexes 
+create index GS_HOUR_ACHIEVE_INDEX1 on GS_HONOUR_ACHIEVE (ACHIEVE_TYPE, ACHIEVE_TIME)
+  tablespace TBS_CBSIS
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+create index GS_HOUR_ACHIEVE_INDEX2 on GS_HONOUR_ACHIEVE (SALESMEN_NO)
+  tablespace TBS_CBSIS
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
